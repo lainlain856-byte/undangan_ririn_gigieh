@@ -1,620 +1,637 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html class="no-js" lang="zxx">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Wedding of Anaya & Rangga</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Petit+Formal+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FAF9F3;
-    --paper:#FFFFFF;
-    --deep-green:#3C4E38;
-    --sage:#8AA07E;
-    --sage-light:#DCE4D3;
-    --gold:#B8985A;
-    --ink:#2B3328;
-    --shadow: 0 10px 40px rgba(60,78,56,0.12);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Jost', sans-serif;
-    font-weight:300;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.serif{ font-family:'Cormorant Garamond', serif; }
-  .script{ font-family:'Petit Formal Script', cursive; }
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Wedding | Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-  /* ===== utility ===== */
-  .eyebrow{
-    text-transform:uppercase;
-    letter-spacing:0.35em;
-    font-size:0.72rem;
-    color:var(--deep-green);
-    font-weight:500;
-  }
-  .section{
-    max-width:640px;
-    margin:0 auto;
-    padding:90px 28px;
-    position:relative;
-  }
-  .center{ text-align:center; }
-  .divider{
-    width:60px; height:1px;
-    background:var(--gold);
-    margin:26px auto;
-  }
-  .btn{
-    display:inline-block;
-    padding:14px 38px;
-    border:1px solid var(--deep-green);
-    color:var(--deep-green);
-    text-decoration:none;
-    letter-spacing:0.12em;
-    font-size:0.78rem;
-    text-transform:uppercase;
-    background:transparent;
-    cursor:pointer;
-    transition:all .4s ease;
-    font-family:'Jost',sans-serif;
-  }
-  .btn:hover{ background:var(--deep-green); color:#fff; }
-  .btn-solid{
-    background:var(--deep-green); color:#fff;
-  }
-  .btn-solid:hover{ background:var(--ink); }
-
-  /* ===== leaf ornaments (signature element) ===== */
-  .leaf-corner{
-    position:absolute;
-    width:150px; height:150px;
-    pointer-events:none;
-    opacity:0.9;
-  }
-  .leaf-corner.tl{ top:0; left:0; }
-  .leaf-corner.tr{ top:0; right:0; transform:scaleX(-1); }
-  .leaf-corner.bl{ bottom:0; left:0; transform:scaleY(-1); }
-  .leaf-corner.br{ bottom:0; right:0; transform:scale(-1,-1); }
-  .leaf-path{
-    fill:none;
-    stroke:var(--sage);
-    stroke-width:1.4;
-    stroke-linecap:round;
-    stroke-dasharray:600;
-    stroke-dashoffset:600;
-    animation:draw 2.4s ease forwards;
-  }
-  .leaf-fill{ fill:var(--sage-light); opacity:0; animation:fadeIn 1.5s ease 1.6s forwards; }
-  @keyframes draw{ to{ stroke-dashoffset:0; } }
-  @keyframes fadeIn{ to{ opacity:0.6; } }
-
-  /* ===== GATE / COVER ===== */
-  #gate{
-    position:fixed; inset:0; z-index:999;
-    background:var(--deep-green);
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.05), transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.05), transparent 40%);
-    color:#fff;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    transition:transform 0.9s cubic-bezier(.65,0,.35,1), opacity 0.9s ease;
-    padding:40px 24px;
-  }
-  #gate.hide{ transform:translateY(-100%); opacity:0; pointer-events:none; }
-  #gate .frame{
-    border:1px solid rgba(255,255,255,0.35);
-    padding:50px 30px;
-    max-width:380px;
-    width:100%;
-    position:relative;
-  }
-  #gate .to{
-    font-size:0.75rem; letter-spacing:0.3em; text-transform:uppercase; opacity:0.75;
-  }
-  #gate .guest-name{
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.4rem;
-    margin-top:10px;
-    font-style:italic;
-    border-bottom:1px solid rgba(255,255,255,0.3);
-    display:inline-block;
-    padding-bottom:6px;
-  }
-  #gate .names{
-    font-family:'Petit Formal Script', cursive;
-    font-size:2.6rem;
-    margin:22px 0 6px;
-    line-height:1.3;
-  }
-  #gate .date-small{
-    letter-spacing:0.2em; font-size:0.8rem; opacity:0.85; text-transform:uppercase;
-  }
-  #gate .btn{
-    margin-top:28px;
-    border-color:#fff; color:#fff;
-  }
-  #gate .btn:hover{ background:#fff; color:var(--deep-green); }
-
-  /* ===== HERO ===== */
-  #hero{
-    min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    position:relative;
-    padding:60px 24px;
-  }
-  #hero .eyebrow{ opacity:0.85; }
-  #hero .names{
-    font-family:'Petit Formal Script', cursive;
-    font-size:3.4rem;
-    color:var(--deep-green);
-    margin:18px 0 6px;
-    line-height:1.25;
-  }
-  #hero .amp{ color:var(--gold); font-size:1.6rem; display:block; margin:2px 0; }
-  #hero .date{
-    font-size:1.05rem;
-    letter-spacing:0.15em;
-    color:var(--ink);
-    margin-top:8px;
-  }
-  .scroll-cue{
-    margin-top:50px;
-    font-size:0.7rem;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-    color:var(--sage);
-    animation:bob 2s infinite ease-in-out;
-  }
-  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
-
-  /* ===== QUOTE ===== */
-  #quote p{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:1.35rem;
-    line-height:1.8;
-    color:var(--deep-green);
-  }
-  #quote .src{
-    display:block; margin-top:18px; font-size:0.8rem; letter-spacing:0.1em; font-style:normal; color:var(--sage);
-    font-family:'Jost',sans-serif;
-  }
-
-  /* ===== COUPLE ===== */
-  .couple-grid{
-    display:grid; grid-template-columns:1fr; gap:50px;
-    margin-top:40px;
-  }
-  @media(min-width:640px){ .couple-grid{ grid-template-columns:1fr 1fr; } }
-  .couple-card{ text-align:center; }
-  .photo-frame{
-    width:180px; height:180px;
-    border-radius:50%;
-    margin:0 auto 22px;
-    background:linear-gradient(160deg, var(--sage-light), var(--paper));
-    border:1px solid var(--sage);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.85rem;
-    color:var(--sage);
-    text-align:center;
-    padding:20px;
-    position:relative;
-  }
-  .photo-frame::after{
-    content:"";
-    position:absolute; inset:-8px;
-    border:1px solid var(--gold);
-    border-radius:50%;
-    opacity:0.5;
-  }
-  .couple-card h3{ font-size:1.7rem; color:var(--deep-green); font-weight:500; }
-  .couple-card .parents{ font-size:0.85rem; color:var(--ink); opacity:0.75; margin-top:8px; line-height:1.7; }
-
-  /* ===== COUNTDOWN ===== */
-  #countdown-row{
-    display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:34px;
-  }
-  .cd-box{
-    background:var(--paper);
-    border:1px solid var(--sage-light);
-    box-shadow:var(--shadow);
-    width:80px; padding:18px 0;
-    border-radius:6px;
-  }
-  .cd-box .num{ font-family:'Cormorant Garamond', serif; font-size:2rem; color:var(--deep-green); }
-  .cd-box .lbl{ font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage); margin-top:4px; }
-
-  /* ===== EVENTS ===== */
-  .event-card{
-    background:var(--paper);
-    border:1px solid var(--sage-light);
-    box-shadow:var(--shadow);
-    padding:38px 30px;
-    border-radius:10px;
-    margin-top:28px;
-    text-align:center;
-  }
-  .event-card h3{ font-size:1.6rem; color:var(--deep-green); font-weight:500; }
-  .event-card .when{ margin:14px 0 4px; font-size:1rem; }
-  .event-card .where{ font-size:0.9rem; opacity:0.8; line-height:1.6; margin-bottom:18px; }
-
-  /* ===== GALLERY ===== */
-  .gallery{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:34px;
-  }
-  .gallery .g{
-    aspect-ratio:1;
-    background:linear-gradient(150deg, var(--sage-light), var(--cream));
-    border:1px solid var(--sage-light);
-    display:flex; align-items:center; justify-content:center;
-    font-size:0.65rem; color:var(--sage); text-align:center; padding:6px;
-    border-radius:4px;
-  }
-
-  /* ===== STORY TIMELINE ===== */
-  .timeline{ margin-top:40px; text-align:left; }
-  .t-item{
-    display:grid; grid-template-columns:70px 1fr; gap:18px;
-    padding:22px 0;
-    border-bottom:1px dashed var(--sage-light);
-  }
-  .t-item:last-child{ border-bottom:none; }
-  .t-item .yr{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--gold); }
-  .t-item h4{ font-size:1.15rem; color:var(--deep-green); font-weight:500; margin-bottom:4px; font-family:'Cormorant Garamond', serif; }
-  .t-item p{ font-size:0.9rem; line-height:1.7; opacity:0.85; }
-
-  /* ===== RSVP ===== */
-  form#rsvp-form{ margin-top:30px; text-align:left; }
-  .field{ margin-bottom:18px; }
-  .field label{ font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--deep-green); display:block; margin-bottom:6px; }
-  .field input, .field select, .field textarea{
-    width:100%; padding:12px 14px;
-    border:1px solid var(--sage-light);
-    background:var(--paper);
-    font-family:'Jost',sans-serif;
-    font-size:0.95rem;
-    border-radius:6px;
-    color:var(--ink);
-  }
-  .field textarea{ resize:vertical; min-height:90px; }
-  .field input:focus, .field select:focus, .field textarea:focus{
-    outline:2px solid var(--sage); outline-offset:1px;
-  }
-  #wishes-list{ margin-top:30px; display:flex; flex-direction:column; gap:14px; max-height:320px; overflow-y:auto; }
-  .wish{
-    background:var(--paper); border:1px solid var(--sage-light); border-radius:8px;
-    padding:16px 18px; text-align:left;
-  }
-  .wish .w-name{ font-weight:500; color:var(--deep-green); font-size:0.9rem; }
-  .wish .w-status{ font-size:0.7rem; color:var(--sage); text-transform:uppercase; letter-spacing:0.08em; margin-left:8px; }
-  .wish .w-msg{ font-size:0.88rem; margin-top:6px; line-height:1.6; }
-  #rsvp-note{ font-size:0.78rem; color:var(--sage); margin-top:10px; display:none; }
-
-  /* ===== GIFT ===== */
-  .gift-card{
-    background:var(--paper); border:1px solid var(--sage-light); box-shadow:var(--shadow);
-    border-radius:10px; padding:26px; margin-top:22px; text-align:left;
-    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
-  }
-  .gift-card .bank{ font-weight:500; color:var(--deep-green); font-size:1rem; }
-  .gift-card .num{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; letter-spacing:0.05em; }
-  .gift-card .name{ font-size:0.82rem; opacity:0.75; }
-  .copy-btn{
-    border:1px solid var(--sage); background:transparent; color:var(--deep-green);
-    padding:8px 16px; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
-    border-radius:20px; cursor:pointer; transition:all .3s;
-    font-family:'Jost',sans-serif;
-  }
-  .copy-btn:hover{ background:var(--sage); color:#fff; }
-
-  /* ===== CLOSING ===== */
-  #closing{ text-align:center; padding-bottom:120px; }
-  #closing .names{ font-family:'Petit Formal Script', cursive; font-size:2.1rem; color:var(--deep-green); margin-top:16px; }
-  #closing p{ line-height:1.8; opacity:0.85; }
-
-  footer{
-    text-align:center; padding:26px; font-size:0.7rem; letter-spacing:0.1em;
-    color:var(--sage); background:var(--deep-green); color:rgba(255,255,255,0.6);
-  }
-
-  /* music toggle */
-  #music-toggle{
-    position:fixed; bottom:22px; right:22px; z-index:500;
-    width:46px; height:46px; border-radius:50%;
-    background:var(--deep-green); color:#fff; border:none;
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; box-shadow:var(--shadow);
-    font-size:1.1rem;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; }
-  }
-</style>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-<!-- ================= GATE (opening screen) ================= -->
-<div id="gate">
-  <div class="frame">
-    <div class="to">Kepada Yth. Bapak/Ibu/Saudara/i</div>
-    <!-- GANTI DI SINI: nama tamu bisa diisi otomatis lewat parameter URL ?to=Nama -->
-    <div class="guest-name" id="guest-name">Tamu Undangan</div>
-    <div class="names">Anaya <span style="font-size:1.6rem;">&amp;</span> Rangga</div>
-    <div class="date-small">Sabtu, 12 Juni 2027</div>
-    <button class="btn" id="open-btn">Buka Undangan</button>
-  </div>
+<!-- Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="assets/img/logo/logo.png" alt="">
+            </div>
+        </div>
+    </div>
 </div>
-
-<!-- ================= HERO ================= -->
-<section id="hero">
-  <svg class="leaf-corner tl" viewBox="0 0 150 150"><path class="leaf-path" d="M5,5 C40,10 20,60 60,55 C90,50 70,100 120,95" /><circle class="leaf-fill" cx="55" cy="35" r="14"/><circle class="leaf-fill" cx="100" cy="75" r="10"/></svg>
-  <svg class="leaf-corner tr" viewBox="0 0 150 150"><path class="leaf-path" d="M5,5 C40,10 20,60 60,55 C90,50 70,100 120,95" /><circle class="leaf-fill" cx="55" cy="35" r="14"/><circle class="leaf-fill" cx="100" cy="75" r="10"/></svg>
-
-  <div class="eyebrow">The Wedding Of</div>
-  <div class="names">Anaya<span class="amp">&amp;</span>Rangga</div>
-  <div class="divider"></div>
-  <div class="date">12 . 06 . 2027</div>
-  <div class="scroll-cue">Gulir ke bawah ↓</div>
-</section>
-
-<!-- ================= QUOTE ================= -->
-<section class="section center" id="quote">
-  <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."</p>
-  <span class="src">QS. Ar-Rum: 21</span>
-</section>
-
-<!-- ================= COUPLE ================= -->
-<section class="section" style="position:relative;">
-  <div class="center eyebrow">Mempelai</div>
-  <div class="couple-grid">
-    <div class="couple-card">
-      <div class="photo-frame">Foto Mempelai Wanita<br>(ganti dengan fotomu)</div>
-      <h3>Anaya Putri</h3>
-      <div class="parents">Putri dari<br>Bapak Sutrisno &amp; Ibu Wulandari</div>
+<!-- Preloader Start -->
+<header>
+    <!-- Header Start -->
+    <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <!-- Main-menu -->
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>                              
+                                    <ul id="navigation">                                                          
+                                        <li><a href="index.html"> home</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="gallery.html">gallery</a></li>
+                                        <li><a href="booking.html">Guestbook</a></li>
+                                        <li><a href="blog.html">Blog</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="single-blog.html">Blog Details</a></li>
+                                                <li><a href="elements.html">Element</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div> 
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
-    <div class="couple-card">
-      <div class="photo-frame">Foto Mempelai Pria<br>(ganti dengan fotomu)</div>
-      <h3>Rangga Aditya</h3>
-      <div class="parents">Putra dari<br>Bapak Hadinata &amp; Ibu Kartika</div>
+    <!-- Header End -->
+</header>
+<main>
+    <!--? Slider Area Start-->
+    <div class="slider-area">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height hero-overly d-flex align-items-center">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-8 col-lg-6 col-md-8 ">
+                            <div class="hero__caption">
+                                <span data-animation="fadeInLeft" data-delay=".3s">january 23</span>
+                                <h1 data-animation="fadeInLeft" data-delay=".5s" data-duration="2000ms">Dennis<strong> & </strong> Judith</h1>
+                                <p data-animation="fadeInLeft" data-delay=".9s">will get married</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Slider -->
+            <div class="single-slider slider-height hero-overly d-flex align-items-center">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-8 col-lg-6 col-md-8 ">
+                            <div class="hero__caption">
+                                <span data-animation="fadeInLeft" data-delay=".3s">january 23</span>
+                                <h1 data-animation="fadeInLeft" data-delay=".5s" data-duration="2000ms">Dennis<strong> & </strong> Judith</h1>
+                                <p data-animation="fadeInLeft" data-delay=".9s">will get married</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= COUNTDOWN ================= -->
-<section class="section center">
-  <div class="eyebrow">Menghitung Hari</div>
-  <div id="countdown-row">
-    <div class="cd-box"><div class="num" id="cd-days">00</div><div class="lbl">Hari</div></div>
-    <div class="cd-box"><div class="num" id="cd-hours">00</div><div class="lbl">Jam</div></div>
-    <div class="cd-box"><div class="num" id="cd-mins">00</div><div class="lbl">Menit</div></div>
-    <div class="cd-box"><div class="num" id="cd-secs">00</div><div class="lbl">Detik</div></div>
-  </div>
-</section>
-
-<!-- ================= EVENTS ================= -->
-<section class="section center">
-  <div class="eyebrow">Save The Date</div>
-
-  <div class="event-card">
-    <h3>Akad Nikah</h3>
-    <div class="when">Sabtu, 12 Juni 2027 · 08.00 – 10.00 WIB</div>
-    <div class="where">Kediaman Mempelai Wanita<br>Jl. Melati No. 10, Depok, Jawa Barat</div>
-    <a class="btn" href="#" id="cal-akad">+ Tambah ke Kalender</a>
-  </div>
-
-  <div class="event-card">
-    <h3>Resepsi</h3>
-    <div class="when">Sabtu, 12 Juni 2027 · 11.00 – 14.00 WIB</div>
-    <div class="where">Graha Kirana Ballroom<br>Jl. Margonda Raya No. 88, Depok, Jawa Barat</div>
-    <a class="btn" href="https://maps.google.com" target="_blank" rel="noopener">Lihat Lokasi</a>
-  </div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section class="section center">
-  <div class="eyebrow">Galeri Kami</div>
-  <div class="gallery">
-    <div class="g">Foto 1</div>
-    <div class="g">Foto 2</div>
-    <div class="g">Foto 3</div>
-    <div class="g">Foto 4</div>
-    <div class="g">Foto 5</div>
-    <div class="g">Foto 6</div>
-  </div>
-</section>
-
-<!-- ================= LOVE STORY ================= -->
-<section class="section" style="position:relative;">
-  <div class="center eyebrow">Kisah Kami</div>
-  <div class="timeline">
-    <div class="t-item">
-      <div class="yr">2021</div>
-      <div><h4>Pertama Bertemu</h4><p>Dipertemukan lewat teman kuliah yang sama di sebuah acara kampus.</p></div>
+    <!-- Slider Area End-->
+    <!--? Our Story Start -->
+    <div class="Our-story-area story-padding">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-70">
+                        <h2>Our Love Story​</h2>
+                        <img src="assets/img/gallery/tittle_img.png" alt="">
+                        <p>Quisque nec facilisis sem. In at commodo velit. Aliquam tempor volutpat laoreet. Quisque non tellus eleifend arcu gravida aliquam. Vivamus quis consequat nisl, nec luctus libero. Nam sodales sem
+                            egestas sem blandit volutpat. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="story-caption background-img mb-40" style="background-image: url(assets/img/gallery/story2.jpg);">
+                        <div class="story-details">
+                            <h4>The Proposal</h4>
+                            <p>Proin at sapien ipsum. Aenean placerat, quam ac tempor congue, orci est luctus ex, ut vestibulum ipsum nisl eu nisi.</p>
+                            <p>Proin at sapien ipsum. Aenean placerat, quam ac tempor.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="story-img">
+                        <img  class="story2" src="assets/img/gallery/story1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="t-item">
-      <div class="yr">2023</div>
-      <div><h4>Menjalin Hubungan</h4><p>Setelah dua tahun berteman dekat, kami memutuskan untuk melangkah bersama.</p></div>
+    <!-- Our Story End -->
+    <!--? Services Start -->
+    <section class="pricing-card-area section-padding30 section-bg" data-background="assets/img/gallery/section_bg1.png">
+        <div class="container">
+                <!-- Section Tittle -->
+                <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-tittle text-center mb-70">
+                        <h2>Wedding Info</h2>
+                        <img src="assets/img/gallery/tittle_img.png" alt="">
+                        <p>Quisque nec facilisis sem. In at commodo velit. Aliquam tempor volutpat laoreet. Quisque non tellus eleifend arcu gravida aliquam. Vivamus quis consequat nisl</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-end">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-card text-center mb-30">
+                        <div class="card-top">
+                            <span class="flaticon-chart"></span>
+                            <h4>The Ceremony</h4>
+                        </div>
+                        <div class="card-bottom">
+                            <ul>
+                                <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
+                                <li><i class="far fa-clock"></i>5:30 PM</li>
+                                <li><i class="fas fa-map-marker-alt"></i>The Mayflower Hotel</li>
+                                <li>1127 Connecticut Avenue,NY</li>
+                                <li><i class="far fa-map"></i> Check out the map</li>
+                            </ul>
+                        </div>
+                        <div class="card-buttons mt-30">
+                            <a href="#" class="btn card-btn1">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-card active text-center mb-30">
+                        <div class="card-top">
+                            <span class="flaticon-project"></span>
+                            <h4>The Reception</h4>
+                        </div>
+                        <div class="card-bottom">
+                            <ul>
+                                <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
+                                <li><i class="far fa-clock"></i>5:30 PM</li>
+                                <li><i class="fas fa-map-marker-alt"></i>The Mayflower Hotel</li>
+                                <li>1127 Connecticut Avenue,NY</li>
+                                <li><i class="far fa-map"></i> Check out the map</li>
+                            </ul>
+                        </div>
+                        <div class="card-buttons mt-30">
+                            <a href="#" class="btn card-btn1">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-card text-center mb-30">
+                        <div class="card-top">
+                            <span class="flaticon-award"></span>
+                            <h4>The Party</h4>
+                        </div>
+                        <div class="card-bottom">
+                            <ul>
+                                <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
+                                <li><i class="far fa-clock"></i>5:30 PM</li>
+                                <li><i class="fas fa-map-marker-alt"></i>The Mayflower Hotel</li>
+                                <li>1127 Connecticut Avenue,NY</li>
+                                <li><i class="far fa-map"></i> Check out the map</li>
+                            </ul>
+                        </div>
+                        <div class="card-buttons mt-30">
+                            <a href="#" class="btn card-btn1">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Card End -->
+    <!--? Count Down Start -->
+    <div class="count-down-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="count-down-wrapper" data-background="assets/img/gallery/section_bg2.png">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter">23</span>
+                                    <p>days</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter active text-center">
+                                    <span class="counter">15</span>
+                                    <p>hours</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter">46</span>
+                                    <p>mins</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter">20</span>
+                                    <p>secs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="t-item">
-      <div class="yr">2026</div>
-      <div><h4>Lamaran</h4><p>Rangga melamar Anaya di tempat pertama kali kami bertemu.</p></div>
+    <!-- Count Down End -->
+    <!--? Gallery Area Start -->
+    <div class="gallery-area section-padding4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-gallery mb-30">
+                        <div class="gallery-img" style="background-image: url(assets/img/gallery/gallery1.png);">
+                        </div>
+                        <div class="thumb-content-box">
+                            <div class="thumb-content">
+                                <h3>image 01</h3>
+                                <a href="assets/img/gallery/gallery1.png" class="menorie-icon"> <i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="single-gallery mb-30">
+                        <div class="gallery-img" style="background-image: url(assets/img/gallery/gallery2.png);">
+                        </div>
+                        <div class="thumb-content-box">
+                            <div class="thumb-content">
+                                <h3>image 02</h3>
+                                <a href="assets/img/gallery/gallery1.png" class="menorie-icon"> <i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="single-gallery mb-30">
+                        <div class="gallery-img" style="background-image: url(assets/img/gallery/gallery3.png);">
+                        </div>
+                        <div class="thumb-content-box">
+                            <div class="thumb-content">
+                                <h3>image 03</h3>
+                                <a href="assets/img/gallery/gallery1.png" class="menorie-icon"> <i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-gallery mb-30">
+                        <div class="gallery-img" style="background-image: url(assets/img/gallery/gallery4.png);">
+                        </div>
+                        <div class="thumb-content-box">
+                            <div class="thumb-content">
+                                <h3>image 04</h3>
+                                <a href="assets/img/gallery/gallery1.png" class="menorie-icon"> <i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= RSVP ================= -->
-<section class="section" style="position:relative;">
-  <div class="center eyebrow">Konfirmasi Kehadiran</div>
-  <form id="rsvp-form">
-    <div class="field">
-      <label for="r-name">Nama</label>
-      <input type="text" id="r-name" required placeholder="Nama lengkap">
+    <!-- Gallery Area End -->
+    <!--? Gift Start -->
+    <section class="gift-area gift-padding fix" data-background="assets/img/gallery/section_bg3.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="gift-caption text-center">
+                        <h2>The Best Gift From You</h2>
+                        <p>Will be your presentation in our wedding</p>
+                        <a href="#" class="btn btn-whit">resarve your Seat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gift End -->
+    <!--? Contact form Start -->
+    <div class="contact-form section-padding30 fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="form-wrapper">
+                        <form id="contact-form" action="#" method="POST">
+                            <!-- section tittle -->
+                            <div class="row ">
+                                <div class="col-lg-12">
+                                    <div class="section-tittle tittle-form text-center mb-30">
+                                        <h2>Are you attending?</h2>
+                                        <img src="assets/img/gallery/tittle_img2.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-box mb-30">
+                                        <input type="text" name="name" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-box subject-icon mb-30">
+                                        <input type="Email" name="subject" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-30">
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            <option value="">1 Guest</option>
+                                            <option value="">2 Guest</option>
+                                            <option value="">3 Guest</option>
+                                            <option value="">4 Guest</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-box message-icon mb-30">
+                                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                                    </div>
+                                <div class="submit-info">
+                                    <button class="btn" type="submit">Confirm now</button>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Shape inner Flower -->
+                        <div class="shape-inner-flower">
+                            <img src="assets/img/gallery/shape2.png" class="shpe2" alt="">
+                        </div>
+                        <!-- Shape outer Flower -->
+                        <div class="shape-outer-flower">
+                            <img src="assets/img/flower/from-top.png" class="outer-top" alt="">
+                            <img src="assets/img/flower/from-bottom.png" class="outer-bottom" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="field">
-      <label for="r-status">Konfirmasi Kehadiran</label>
-      <select id="r-status">
-        <option value="Hadir">Insya Allah Hadir</option>
-        <option value="Tidak Hadir">Tidak Bisa Hadir</option>
-        <option value="Ragu">Masih Ragu</option>
-      </select>
+    <!-- Contact form End -->
+    <section class="brand-area section-padding-b">
+        <div class="container">
+                <!-- Section Tittle -->
+                <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-tittle text-center mb-80">
+                        <h2>Registry Gift</h2>
+                        <img src="assets/img/gallery/tittle_img.png" alt="">
+                        <p>Quisque nec facilisis sem. In at commodo velit. Aliquam tempor volutpat laoreet. Quisque non tellus eleifend arcu gravida aliquam. Vivamus quis consequat nisl</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-active brand-border">
+                <div class="single-brand">
+                    <img src="assets/img/service/brand1.jpg" alt="">
+                </div>
+                <div class="single-brand">
+                    <img src="assets/img/service/brand2.jpg" alt="">
+                </div>
+                <div class="single-brand">
+                    <img src="assets/img/service/brand3.jpg" alt="">
+                </div>
+                <div class="single-brand">
+                    <img src="assets/img/service/brand4.jpg" alt="">
+                </div>
+                <div class="single-brand">
+                    <img src="assets/img/service/brand5.jpg" alt="">
+                </div>
+                <div class="single-brand">
+                    <img src="assets/img/service/brand3.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery-2 img Start-->
+    <div class="gallery-area2 fix">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery-active owl-carousel">
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery01.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery02.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery03.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery04.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery05.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery06.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery07.png" alt=""></a>
+                        </div>
+                        <div class="gallery-img">
+                            <a href="#"><img src="assets/img/gallery/gallery08.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="field">
-      <label for="r-count">Jumlah Tamu</label>
-      <input type="number" id="r-count" min="1" max="5" value="1">
+    <!-- Gallery-2 img End-->
+    <!--? Start map Area-->
+    <section class="contact-sections">
+        <div class="d-area">
+            <div id="map" style="height: 235px; position: relative; overflow: hidden;"></div>
+            <script>
+                function initMap() {
+                    var uluru = {
+                        lat: -25.363,
+                        lng: 131.044
+                    };
+                    var grayStyles = [{
+                            featureType: "all",
+                            stylers: [{
+                                    saturation: -90
+                                },
+                                {
+                                    lightness: 50
+                                }
+                            ]
+                        },
+                        {
+                            elementType: 'labels.text.fill',
+                            stylers: [{
+                                color: '#ccdee9'
+                            }]
+                        }
+                    ];
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: -31.197,
+                            lng: 150.744
+                        },
+                        zoom: 9,
+                        styles: grayStyles,
+                        scrollwheel: false
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
+            </script>
+        </div>
+    </section>
+    <!--? End map Area -->
+</main>
+<footer>
+    <!-- Footer Start-->
+    <div class="footer-main" data-background="assets/img/gallery/section_bg4.png">
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-2  col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3  col-lg-3 col-lg-2 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>WEDDING INFO</h4>
+                                <ul>
+                                    <li><a href="#">Why Hire a Planner?</a></li>
+                                    <li><a href="#">How Can I Make An</a></li>
+                                    <li><a href="#">Appointment?</a></li>
+                                    <li><a href="#">How to Choose a Venue</a></li>
+                                    <li><a href="#">Event Catalogue</a></li>
+                                    <li><a href="#"> Accept</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>ABOUT US</h4>
+                                <ul>
+                                    <li><a href="#">Bridesmaids</a></li>
+                                    <li><a href="#">November 22, 2020</a></li>
+                                    <li><a href="#">Groomsmen</a></li>
+                                    <li><a href="#">Groomsmen</a></li>
+                                    <li><a href="#">November 22, 2020</a></li>
+                                    <li><a href="#">JEWELRY</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>LOCATION</h4>
+                                <ul>
+                                    <li><a href="#">Coloelib.com</a></li>
+                                    <li>+(123) 456 - 7890 - 456 35 W 46nd Street NY</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="field">
-      <label for="r-msg">Ucapan &amp; Doa</label>
-      <textarea id="r-msg" placeholder="Tuliskan ucapan dan doa terbaikmu..."></textarea>
-    </div>
-    <div class="center">
-      <button type="submit" class="btn btn-solid">Kirim</button>
-    </div>
-    <p id="rsvp-note" class="center">Catatan: ini demo tampilan — ucapan hanya tersimpan sementara di layar ini. Untuk mengumpulkan RSVP sungguhan, hubungkan form ini ke Google Form/Sheet secara gratis.</p>
-  </form>
+    <!-- Footer End-->
+</footer>
 
-  <div id="wishes-list"></div>
-</section>
+    <!-- JS here -->
 
-<!-- ================= GIFT ================= -->
-<section class="section" style="position:relative;">
-  <div class="center eyebrow">Tanda Kasih</div>
-  <p class="center" style="font-size:0.9rem; opacity:0.85; margin-top:10px;">Kehadiran dan doa restu Anda adalah hadiah paling berharga. Namun jika ingin memberi tanda kasih, dapat melalui:</p>
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
 
-  <div class="gift-card">
-    <div>
-      <div class="bank">Bank BCA</div>
-      <div class="num">1234 5678 90</div>
-      <div class="name">a.n. Anaya Putri</div>
-    </div>
-    <button class="copy-btn" data-copy="1234567890">Salin</button>
-  </div>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
 
-  <div class="gift-card">
-    <div>
-      <div class="bank">Bank Mandiri</div>
-      <div class="num">0987 6543 21</div>
-      <div class="name">a.n. Rangga Aditya</div>
-    </div>
-    <button class="copy-btn" data-copy="0987654321">Salin</button>
-  </div>
-</section>
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="./assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
 
-<!-- ================= CLOSING ================= -->
-<section class="section center" id="closing" style="position:relative;">
-  <svg class="leaf-corner bl" viewBox="0 0 150 150"><path class="leaf-path" d="M5,5 C40,10 20,60 60,55 C90,50 70,100 120,95" /><circle class="leaf-fill" cx="55" cy="35" r="14"/><circle class="leaf-fill" cx="100" cy="75" r="10"/></svg>
-  <svg class="leaf-corner br" viewBox="0 0 150 150"><path class="leaf-path" d="M5,5 C40,10 20,60 60,55 C90,50 70,100 120,95" /><circle class="leaf-fill" cx="55" cy="35" r="14"/><circle class="leaf-fill" cx="100" cy="75" r="10"/></svg>
-  <div class="eyebrow">Terima Kasih</div>
-  <p style="margin-top:16px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
-  <div class="names">Anaya &amp; Rangga</div>
-</section>
+    <!-- counter , waypoint -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
 
-<footer>MADE WITH LOVE · 2027</footer>
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
 
-<button id="music-toggle" title="Putar/Jeda Musik">🎵</button>
-<!-- GANTI DI SINI: masukkan file musik pilihanmu, lalu hapus komentar audio di bawah -->
-<!-- <audio id="bg-music" loop src="musik-kamu.mp3"></audio> -->
-
-<script>
-  // ---- Guest name from URL param ?to=Nama ----
-  const params = new URLSearchParams(window.location.search);
-  const guest = params.get('to');
-  if(guest){ document.getElementById('guest-name').textContent = decodeURIComponent(guest); }
-
-  // ---- Gate open ----
-  document.getElementById('open-btn').addEventListener('click', () => {
-    document.getElementById('gate').classList.add('hide');
-    const music = document.getElementById('bg-music');
-    if(music){ music.play().catch(()=>{}); }
-  });
-
-  // ---- Music toggle ----
-  let playing = false;
-  document.getElementById('music-toggle').addEventListener('click', () => {
-    const music = document.getElementById('bg-music');
-    if(!music) return;
-    if(playing){ music.pause(); } else { music.play().catch(()=>{}); }
-    playing = !playing;
-  });
-
-  // ---- Countdown ----
-  // GANTI DI SINI: sesuaikan tanggal & jam acara
-  const targetDate = new Date('2027-06-12T08:00:00+07:00').getTime();
-  function updateCountdown(){
-    const now = Date.now();
-    const diff = targetDate - now;
-    if(diff <= 0){
-      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '00');
-      return;
-    }
-    const d = Math.floor(diff/(1000*60*60*24));
-    const h = Math.floor((diff/(1000*60*60))%24);
-    const m = Math.floor((diff/(1000*60))%60);
-    const s = Math.floor((diff/1000)%60);
-    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // ---- Add to calendar (Akad) ----
-  document.getElementById('cal-akad').addEventListener('click', (e) => {
-    e.preventDefault();
-    const startDate = '20270612T080000';
-    const endDate = '20270612T100000';
-    const details = encodeURIComponent('Akad Nikah Anaya & Rangga');
-    const location = encodeURIComponent('Jl. Melati No. 10, Depok, Jawa Barat');
-    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${details}&dates=${startDate}/${endDate}&location=${location}`;
-    window.open(url, '_blank');
-  });
-
-  // ---- RSVP form (in-memory, resets on reload) ----
-  const wishesList = document.getElementById('wishes-list');
-  document.getElementById('rsvp-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('r-name').value.trim();
-    const status = document.getElementById('r-status').value;
-    const msg = document.getElementById('r-msg').value.trim();
-    if(!name) return;
-
-    const wish = document.createElement('div');
-    wish.className = 'wish';
-    wish.innerHTML = `<span class="w-name">${escapeHTML(name)}</span><span class="w-status">${escapeHTML(status)}</span><div class="w-msg">${escapeHTML(msg || '(tanpa ucapan)')}</div>`;
-    wishesList.prepend(wish);
-
-    document.getElementById('rsvp-note').style.display = 'block';
-    e.target.reset();
-  });
-
-  function escapeHTML(str){
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  // ---- Copy bank account ----
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const num = btn.getAttribute('data-copy');
-      navigator.clipboard.writeText(num).then(() => {
-        const original = btn.textContent;
-        btn.textContent = 'Tersalin!';
-        setTimeout(() => btn.textContent = original, 1500);
-      });
-    });
-  });
-</script>
-
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+    
 </body>
 </html>
